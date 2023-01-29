@@ -5,6 +5,44 @@ import (
 	"time"
 )
 
+func evenfibwformula(limit int) int {
+	term1 := 0           // n - 2
+	term2 := 2           // n - 1
+	sum := term1 + term2 //  new n value
+
+	for term2 < limit {
+		nextTerm := 4*term2 + term1 // F = 4*F(n-1) + F(n-2)
+
+		if nextTerm > limit {
+			break
+		}
+
+		term1 = term2
+		term2 = nextTerm
+		sum += term2
+	}
+
+	return sum
+}
+
+func evenfib(limit int) int {
+	term1 := 1
+	term2 := 1
+	sum := 0
+
+	for term1 < limit {
+		if term1%2 == 0 {
+			sum += term1
+		}
+
+		prevTerm1 := term1
+		term1 = term2
+		term2 = prevTerm1 + term2
+	}
+
+	return sum
+}
+
 func EvenFibonacciNumbersSum() {
 	fmt.Println()
 	fmt.Println(
@@ -20,6 +58,16 @@ four million, find the sum of the even-valued terms. (Project Euler #2)`,
 
 	start := time.Now()
 
+	sum := evenfibwformula(4000000)
+
 	elapsed := time.Since(start)
+	fmt.Printf("Sum of even Fibonacci numbers below 4 million: %d\n", sum)
+	fmt.Print("Execution time: ", elapsed)
+
+	start = time.Now()
+	othersum := evenfib(4000000)
+
+	elapsed = time.Since(start)
+	fmt.Printf("\n\nSum of even Fibonacci numbers below 4 million: %d\n", othersum)
 	fmt.Print("Execution time: ", elapsed)
 }

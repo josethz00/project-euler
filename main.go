@@ -13,6 +13,7 @@ func main() {
 		fmt.Println("Select an exercise to run:	")
 		fmt.Println("    1 - Sum of 3 and 5 multiples")
 		fmt.Println("    2 - Even Fibonacci numbers sum")
+		fmt.Println("    3 - Largest Prime Factor")
 
 		var selectedExercise int
 		_, err := fmt.Scanf("%d", &selectedExercise)
@@ -27,6 +28,8 @@ func main() {
 			exercises.SumOf3And5Multiples()
 		case 2:
 			exercises.EvenFibonacciNumbersSum()
+		case 3:
+			exercises.LargestPrimeFactor()
 		}
 
 		time.Sleep(10 * time.Second)
